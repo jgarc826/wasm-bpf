@@ -94,12 +94,6 @@ pub struct AppState {
     pub(crate) callback_func_name: String,
     pub(crate) wrapper_called: bool,
     pub(crate) operation_rx: mpsc::Receiver<ProgramOperation>,
-    /// Host handles for the directories the runtime preopened, keyed by the WASI file
-    /// descriptor the guest sees. wasi-common 5.0.1 exposes no host descriptor for a WASI
-    /// directory handle, so the mapping has to be recorded here at preopen time. Only
-    /// descriptors the host itself opened appear here; anything the guest opened resolves to
-    /// nothing.
-    pub(crate) preopen_dirs: HashMap<u32, File>,
 }
 
 impl AppState {
@@ -108,7 +102,6 @@ impl AppState {
         wasi: WasiCtx,
         callback_func_name: String,
         operation_rx: mpsc::Receiver<ProgramOperation>,
-        preopen_dirs: HashMap<u32, File>,
     ) -> Self {
         Self {
             wasi,
@@ -119,7 +112,6 @@ impl AppState {
             callback_func_name,
             wrapper_called: false,
             operation_rx,
-            preopen_dirs,
         }
     }
 }

@@ -8,7 +8,6 @@ pub(crate) const ENOENT: i32 = 2;
 
 pub(crate) mod attach;
 pub(crate) mod close;
-pub(crate) mod fd;
 pub(crate) mod fd_by_name;
 pub(crate) mod load;
 pub(crate) mod map_operate;

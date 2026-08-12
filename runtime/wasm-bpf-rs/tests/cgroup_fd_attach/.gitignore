@@ -1,3 +1,0 @@
-cgroup_fd_attach.wasm
-sockops.bpf.o
-sockops.data.h
